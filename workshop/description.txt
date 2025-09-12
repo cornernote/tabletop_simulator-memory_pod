@@ -1,0 +1,26 @@
+[h1]Animated Memory Pod[/h1]
+
+...
+
+[h2]=== FEATURES ===[/h2]
+
+[list]
+[*] Animated deployment
+[*] 7 Models available
+[*] Hides setup buttons in right-click menu
+[/list]
+
+[h2]=== CREDITS AND THANKS ===[/h2]
+
+Content was obtained from the following workshop mods:
+
+[list]
+[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2057376256]Utility Memory Bag by directsun[/url]
+[*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2271387270]Angelic Deployment Bag by MoonkeyMod[/url]
+[/list]
+
+[h2]=== RESOURCES ===[/h2]
+
+[list]
+[*] [url=https://github.com/cornernote/tabletop_simulator-memory_pod]Some assets and a copy of the savegame on GitHub[/url]
+[/list]
