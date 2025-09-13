@@ -14,6 +14,19 @@ The memory bag script was altered to show animations, reposition the buttons, an
 
 ---
 
+## 🙌 Credits & Thanks
+
+**Built with passion and inspired by:**
+
+- [Utility Memory Bag by directsun](https://steamcommunity.com/sharedfiles/filedetails/?id=2057376256)
+- [Memory Bag 2.0 by MrStump](https://steamcommunity.com/sharedfiles/filedetails/?id=953770080)
+- [Angelic Deployment Bag by MoonkeyMod](https://steamcommunity.com/sharedfiles/filedetails/?id=2271387270)
+- [WH40K Drop Pods by Styles](https://steamcommunity.com/sharedfiles/filedetails/?id=1365369273)
+
+A big **thank you** for the amazing art and tools – without these contributions, this mod wouldn't exist.
+
+---
+
 ## 📚 Resources
 
 - [Some assets and a copy of the savegame on GitHub](https://github.com/cornernote/tabletop_simulator-memory_pod)
