@@ -1,14 +1,69 @@
--- Utility memory bag by Directsun
--- Version 2.7.0
--- Fork of Memory Bag 2.0 by MrStump
+local AutoUpdater = {
+    name = "Memory Pod",
+    version = "3.0.0",
+    versionUrl = "https://raw.githubusercontent.com/cornernote/tabletop_simulator-memory_pod/refs/heads/main/lua/memory-pod.ver",
+    scriptUrl = "https://raw.githubusercontent.com/cornernote/tabletop_simulator-memory_pod/refs/heads/main/lua/memory-pod.lua",
 
--- cornernote changes:
--- - added animations
--- - improve button placement for memory pod model
--- - add context menu to unlock/lock setup buttons for cleaner interface
---
--- Want to contribute? Create an issue or fork the code on GitHub and submit a pull request:
--- https://github.com/sunflowermans/TTS-UtilityMemoryBag
+    isNewerVersion = function(self, remoteVersion)
+        local function split(v)
+            local t = {}
+            for n in v:gmatch("%d+") do
+                table.insert(t, tonumber(n))
+            end
+            return t
+        end
+
+        local r, l = split(remoteVersion), split(self.version)
+        for i = 1, math.max(#r, #l) do
+            local rv, lv = r[i] or 0, l[i] or 0
+            if rv > lv then
+                return true
+            end
+            if rv < lv then
+                return false
+            end
+        end
+        return false
+    end,
+
+    fetchNewScript = function(self, newVersion)
+        WebRequest.get(self.scriptUrl, function(request)
+            if request.response_code ~= 200 then
+                return
+            end
+            if request.text and #request.text > 0 then
+                self.host.setLuaScript(request.text)
+                print(self.name .. ": Updated to version " .. newVersion)
+                Wait.condition(function()
+                    if self.host then
+                        self.host.reload()
+                    end
+                end, function()
+                    return not self.host or self.host.resting
+                end)
+            end
+        end)
+    end,
+
+    checkForUpdate = function(self)
+        if not self.host then
+            return
+        end
+        WebRequest.get(self.versionUrl, function(request)
+            if request.response_code ~= 200 then
+                print(self.name .. ": Failed to check version (" .. request.response_code .. ")")
+                return
+            end
+            local remoteVersion = request.text:match("[^\r\n]+") or ""
+            if remoteVersion ~= "" and self:isNewerVersion(remoteVersion) then
+                self:fetchNewScript(remoteVersion)
+            end
+        end)
+    end,
+}
+
+-- Fork of Utility memory bag 2.7.0 by Directsun
+-- Fork of Memory Bag 2.0 by MrStump
 
 CONFIG = {
     MEMORY_GROUP = {
@@ -301,6 +356,9 @@ function onload(saved_data)
 
     self.clearContextMenu()
     self.addContextMenuItem("Unlock Setup", toggleSetupLock)
+
+    AutoUpdater.host = self
+    AutoUpdater:checkForUpdate()
 end
 
 local setupLocked = true
