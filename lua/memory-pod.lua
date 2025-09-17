@@ -1,6 +1,6 @@
 local AutoUpdater = {
     name = "Memory Pod",
-    version = "3.0.0",
+    version = "3.0.1",
     versionUrl = "https://raw.githubusercontent.com/cornernote/tabletop_simulator-memory_pod/refs/heads/main/lua/memory-pod.ver",
     scriptUrl = "https://raw.githubusercontent.com/cornernote/tabletop_simulator-memory_pod/refs/heads/main/lua/memory-pod.lua",
 
